@@ -8,6 +8,7 @@ import Home from "@/pages/home";
 import JobPage from "@/pages/job-page";
 import Signin from "@/pages/signin";
 import Signup from "@/pages/signup";
+import { useUser } from "./hooks/useUser";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
 );
 
 function App() {
+  useUser();
   return <RouterProvider router={router} />;
 }
 

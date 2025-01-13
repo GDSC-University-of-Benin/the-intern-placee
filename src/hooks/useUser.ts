@@ -1,5 +1,4 @@
-import { getCurrentUser } from "@/lib/api/auth";
-import { isErrorInstance } from "@/lib/utils";
+import { setCurrentUserOnAuthStateChange } from "@/lib/api/auth";
 import { User } from "firebase/auth";
 import { useEffect, useState } from "react";
 
@@ -7,17 +6,13 @@ export function useUser() {
 	const [user, setUser] = useState<User | null>(null);
 
 	useEffect(() => {
-		const getUser = async () => {
-			try {
-				const currentUser = await getCurrentUser();
-				setUser(currentUser);
-			} catch (e: unknown) {
-				if(isErrorInstance(e)) {
-					console.log(e.code);
-				}
+		setCurrentUserOnAuthStateChange((userState) => {
+			if (userState) {
+				setUser(userState);
+			} else {
+				console.log("User does not exists");
 			}
-		};
-		getUser();
+		});
 	}, []);
 
 	return { user };
