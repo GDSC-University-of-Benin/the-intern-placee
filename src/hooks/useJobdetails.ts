@@ -23,6 +23,7 @@ export default function useJobdetails(jobId: string | undefined) {
 			} catch (e) {
 				if (isErrorInstance(e)) {
 					setStatus("error");
+					console.log(e)
 					setError(e);
 				}
 			}

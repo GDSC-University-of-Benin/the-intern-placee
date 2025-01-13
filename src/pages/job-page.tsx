@@ -52,6 +52,7 @@ export default function JobPage() {
 		salaryMin,
 		salaryMax,
 	} = jobDetails;
+	
 	const tagsWithSkills = [
 		employment,
 		workModel,
